@@ -1,7 +1,5 @@
 # cfPython_Achievement2
 
-# cfPython_Achivement1
-
 ## Objective
 
 In this project, you’ll take your Recipe app from Achievement 1 and use the Django web framework to develop a fully fledged web application with multiple users and an admin panel.

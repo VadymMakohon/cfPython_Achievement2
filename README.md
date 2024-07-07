@@ -1,15 +1,12 @@
 # cfPython_Achievement2
 
 ## Objective
-
 In this project, you’ll take your Recipe app from Achievement 1 and use the Django web framework to develop a fully fledged web application with multiple users and an admin panel.
 
 ## Context
-
 This project focuses on creating a web application using the Django framework. To work with Django, you need an understanding of application design patterns and internal language, which you gained in Achievement 1 when using Python to make a command line Recipe app. Now, in Achievement 2, it’s time for you to rebuild your app using Django. Django has the advantage of being neatly moduralized and developer friendly, while also being powerful enough to run some of the world’s most popular websites. In your project, working with Python-based Django, you’ll develop a full-stack web application using the Django development server. You’ll then deploy the application using Heroku, with a Postgres database at the backend, HTML, and CSS-based rendered pages at the frontend and Python-based Django as your web application framework. Your final web application will be dynamic and multi-user, letting users sign up and create their own content. It’ll also have statistical dashboards, implementing your new data analytics and data visualization skills. Finally, you’ll demonstrate coding best practices by putting your well-tested and well-documented code on GitHub.
 
 ## Project Deliverables
-
 Over the course of each Exercise in this Achievement, you’ll learn how to implement new features in your web application. And in the task at the end of each Exercise, you’ll submit a deliverable that adds the new feature(s) to your application.
 
 ### Exercise 1: Getting Started with Django

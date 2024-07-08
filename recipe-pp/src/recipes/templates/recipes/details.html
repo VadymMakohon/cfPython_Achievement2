@@ -60,8 +60,8 @@
             position: relative;
             width: 100%;
             height: 0;
-            padding-top: 50%;
-            /* 2:1 aspect ratio (height = 50% of width) */
+            padding-top: 75%;
+            /* Adjust this to change the aspect ratio, e.g., 75% for a more square-like image */
             overflow: hidden;
             border-radius: 12px;
             box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
@@ -73,8 +73,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            /* Crop the image while maintaining aspect ratio */
+            object-fit: contain;
+            /* Ensure the image is fully visible within the container */
         }
 
         .back-button {

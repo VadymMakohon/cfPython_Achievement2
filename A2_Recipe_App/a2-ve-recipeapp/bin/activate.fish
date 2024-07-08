@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/vadymmakohon/Desktop/cfPython_Achievement2/Exersize_2.2/A2_Recipe_App/a2-ve-recipeapp"
+set -gx VIRTUAL_ENV "/Users/vadymmakohon/Desktop/cfPython_Achievement2/A2_Recipe_App/a2-ve-recipeapp"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

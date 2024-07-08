@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipes</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin-bottom: 1em;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 0.5em 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #388E3C;
+        }
+
+        .add-recipe-link {
+            margin-top: 1.5em;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #4CAF50;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-recipe-link:hover {
+            background-color: #388E3C;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to your personalized Recipes App!</h1>
+    <h3>Let's get cookin!</h3>
+    <ul>
+        {% for recipe in recipes %}
+        <li>
+            <a href="/recipes/{{ recipe.id }}">{{ recipe.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/recipes/new" class="add-recipe-link">Add a new recipe</a>
+</body>
+
+</html>

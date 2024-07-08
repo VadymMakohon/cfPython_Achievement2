@@ -6,86 +6,125 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recipes</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Poppins:400,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fuggles&family=Mooli&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: 'Arial', sans-serif;
-            background-image: url("{% static './media/recipes/background.png' %}");
+            background-image: url("{% static 'recipes/images/background.png' %}");
             background-size: cover;
             background-position: center;
-            text-align: right;
-            color: rgb(255, 255, 255);
-        }
-
-        h1 {
-            color: #4CAF50;
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-        }
-
-        h3 {
-            color: #555;
-            font-size: 1.5em;
-            margin-bottom: 1em;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin: 0.5em 0;
-        }
-
-        a {
-            text-decoration: none;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: #388E3C;
-        }
-
-        .add-recipe-link {
-            margin-top: 1.5em;
-            font-size: 1.2em;
-            color: #fff;
-            background-color: #4CAF50;
-            padding: 0.5em 1em;
-            border: none;
-            border-radius: 5px;
+            background-attachment: fixed;
             text-align: center;
-            display: inline-block;
-            transition: background-color 0.3s ease;
+            padding: 20px;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
         }
 
-        .add-recipe-link:hover {
-            background-color: #388E3C;
+        .page-title {
+            font-size: 14vw;
+            color: #bcbcbc;
+            /* Light grey for better readability */
+            text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.963);
+            font-family: 'Fuggles', cursive;
+            margin-top: 100px;
+            /* Adjusted margin top for spacing */
+        }
+
+        .recipe-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            /* Added margin top for spacing */
+        }
+
+        .recipe-item {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid #444;
+            border-radius: 8px;
+            outline: 1px solid transparent;
+            outline-color: rgba(255, 255, 255, .3);
+            outline-offset: -7px;
+            margin: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            transition: transform 0.2s;
+        }
+
+        .recipe-title {
+            text-transform: uppercase;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            color: #bcbcbc;
+            /* Light grey for better readability */
+        }
+
+        .recipe-image {
+            width: 100%;
+            /* Adjusted width to fill container */
+            height: auto;
+            max-height: 200px;
+            margin-bottom: 10px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            /* Added border radius for image */
+        }
+
+        .recipe-item a {
+            text-decoration: none;
             color: #fff;
+        }
+
+        .recipe-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            position: fixed;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.963);
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            letter-spacing: 2px;
+            top: 20px;
+            left: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #bcbcbc;
+            /* Light grey for better readability */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 
 <body>
-    {% load static %}
-    <h1>Welcome to your personalized Recipes App!</h1>
-    <h3>Let's get cookin!</h3>
-    <ul>
-        {% for recipe in recipes %}
-        <li>
-            <a href="/recipes/{{ recipe.id }}">{{ recipe.title }}</a>
-        </li>
+    <a href="{% url 'recipes:recipes_home' %}" class="back-button">Back</a>
+    <div class="page-title">Recipes</div>
+    <div class="recipe-list">
+        {% for object in object_list %}
+        <div class="recipe-item">
+            <a href="{{ object.get_absolute_url }}">
+                <div class="recipe-title">{{ object.name }}</div>
+                <img src="{{ object.pic.url }}" alt="{{ object.name }}" class="recipe-image">
+            </a>
+        </div>
         {% endfor %}
-    </ul>
-    <a href="/recipes/new" class="add-recipe-link">Add a new recipe</a>
+    </div>
 </body>
 
 </html>

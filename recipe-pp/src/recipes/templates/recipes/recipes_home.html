@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recipes</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Poppins:400,700" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -13,10 +15,11 @@
             justify-content: center;
             height: 100vh;
             font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-            color: #333;
+            background-image: url("{% static 'recipes/background.png' %}");
+            background-size: cover;
+            background-position: center;
+            text-align: right;
+            color: rgb(255, 255, 255);
         }
 
         h1 {
@@ -72,6 +75,7 @@
 </head>
 
 <body>
+    {% load static %}
     <h1>Welcome to your personalized Recipes App!</h1>
     <h3>Let's get cookin!</h3>
     <ul>

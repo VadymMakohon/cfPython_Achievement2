@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fuggles&family=Mooli&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <a href="{% url 'recipes:recipes_home' %}" class="back-button">Back</a>
+    <div class="page-title">Recipes</div>
+    <div class="recipe-list">
+        {% for object in object_list %}
+        <div class="recipe-item">
+            <a href="{{ object.get_absolute_url }}">
+                <div class="recipe-title">{{ object.name }}</div>
+                <img src="{{ object.pic.url }}" alt="{{ object.name }}" class="recipe-image">
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <style>
+        body {
+            background-image: url("{% static 'recipes/images/home_background2.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .page-title {
+            font-size: 14vw;
+            color: rgb(188, 188, 188);
+            text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.963);
+            font-family: 'Fuggles', cursive;
+            margin-top: -30px;
+        }
+
+        .recipe-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .recipe-item {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid #444;
+            border-radius: 8px;
+            outline: 1px solid transparent;
+            outline-color: rgba(255, 255, 255, .3);
+            outline-offset: -7px;
+            margin: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            transition: transform 0.2s;
+        }
+
+        .recipe-title {
+            font-family: 'Roboto';
+            text-transform: uppercase;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.963);
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            color: rgb(188, 188, 188);
+        }
+
+        .recipe-image {
+            width: 70%;
+            height: auto;
+            max-height: 200px;
+            margin-bottom: 10px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .recipe-item a {
+            text-decoration: none;
+            color: #fff;
+
+        }
+
+        .recipe-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            position: fixed;
+            font-family: 'Roboto';
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.963);
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            top: 20px;
+            left: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: rgb(188, 188, 188);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
+    </style>
+</body>
+
+</html>

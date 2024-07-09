@@ -8,8 +8,10 @@ class Recipe(models.Model):
     difficulty = models.CharField(max_length=20, default="N/A")
     ingredients = models.ManyToManyField('ingredients.Ingredient', through='recipesingredients.RecipeIngredient', related_name='recipes')
     pic = models.ImageField(upload_to='recipes', default='no_picture.png') # default stored in src/media
+
     def calc_difficulty(self):
         num_ingredients = self.ingredients.count()
+
         if self.cooking_time < 10:
             if num_ingredients < 4:
                 return "Easy"
@@ -25,6 +27,7 @@ class Recipe(models.Model):
         super().save(*args, **kwargs)
         self.difficulty = self.calc_difficulty()
         super().save(update_fields=["difficulty"])
+
     def __str__(self):
         return self.name
     

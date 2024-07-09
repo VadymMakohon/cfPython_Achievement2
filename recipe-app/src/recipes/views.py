@@ -1,7 +1,10 @@
 from io import BytesIO
 import base64
 import logging
+import pandas as pd
+import matplotlib.pyplot as plt
 
+from typing import Any, Dict
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
@@ -24,9 +27,6 @@ def recipes_home(request):
     return render(request, "recipes/recipes_home.html")
 
 def get_chart(chart_type, data, **kwargs):
-    import matplotlib.pyplot as plt
-    import pandas as pd
-
     plt.switch_backend("AGG")
     fig = plt.figure(figsize=(12, 8), dpi=100)
     ax = fig.add_subplot(111)

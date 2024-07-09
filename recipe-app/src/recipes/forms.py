@@ -8,36 +8,39 @@ CHART_CHOICES = (
     ("#3", "Line Chart"),
 )
 
-
 class RecipeSearchForm(forms.Form):
-    search_text = forms.CharField(
+    Recipe_Name = forms.CharField(
         required=False,
-        max_length=100, # Adjust the max length as needed
-        label="Search",
+        max_length=100,
+        label="Recipe Name",
         widget=forms.TextInput(
-            attrs={"class": "form-item", "placeholder": "Enter a Recipe Name or Ingredient"}
+            attrs={"class": "form-control", "placeholder": "Enter a Recipe Name"}
         ),
     )
+
     Ingredients = forms.ModelMultipleChoiceField(
         required=False,
-        queryset=Ingredient.objects.all(),
-        label="Ingredient(s)",
-        widget=forms.SelectMultiple(attrs={"class": "form-item"}),
+        queryset=Ingredient.objects.order_by('name'),
+        label="Ingredients",
+        widget=forms.SelectMultiple(attrs={"class": "form-control"}),
     )
+
     chart_type = forms.ChoiceField(
-        choices=CHART_CHOICES, widget=forms.Select(attrs={"class": "form-item"})
+        choices=CHART_CHOICES,
+        widget=forms.Select(attrs={"class": "form-control"}),
+        required=False,
+        label="Chart Type",
     )
 
     def clean(self):
         cleaned_data = super().clean()
-        search_text = cleaned_data.get("search_text")
+        recipe_name = cleaned_data.get("Recipe_Name")
         ingredients = cleaned_data.get("Ingredients")
 
-        if not search_text and not ingredients:
-            raise forms.ValidationError(
-                "Please enter a search term or select an ingredient."
-            )
+        if not recipe_name and not ingredients:
+            raise forms.ValidationError("Please enter a recipe name or select ingredients.")
         return cleaned_data
+
 
 class RecipeForm(forms.ModelForm):
     class Meta:

@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,11 +39,11 @@
             box-shadow: 4px 4px 4px rgba(0, 0, 0, 1);
         }
 
-        .login-container p {
+        .login-title {
             color: white;
             margin-bottom: 20px;
             margin-top: 5px;
-            font-size: 90px;
+            font-size: 80px;
             font-family: 'Fuggles', cursive;
         }
 
@@ -90,14 +89,31 @@
             margin-top: 10px;
             display: inline-block;
         }
+
+        .error-message {
+            color: rgb(255, 29, 29);
+            margin-bottom: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .error-text {
+            margin: 0;
+            padding: 5px;
+        }
     </style>
 </head>
 
 <body>
     <div class="login-container">
-        <p>Login</p>
+        <p class="login-title">Login</p>
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
+            {% if form.errors %}
+            <div class="error-message">
+                <p class="error-text">Invalid username or password.<br>Please try again.</p>
+            </div>
+            {% endif %}
             <div class="input-container">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>

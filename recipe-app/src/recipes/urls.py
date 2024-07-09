@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import recipes_home, export_recipes_csv, generate_chart, about_page, add_recipe
+from .views import recipes_home, export_recipes_csv, generate_chart, add_recipe
 from .views import RecipesListView, RecipesDetailView
 from django.conf.urls.static import static
 from django.conf import settings
@@ -12,6 +12,7 @@ urlpatterns = [
     path("recipes/export/", export_recipes_csv, name="export_csv"),
     path("generate-chart/", generate_chart, name="generate_chart"),
     path("recipes/", RecipesListView.as_view(), name="recipes_list"),
-    path("list/<pk>", RecipesDetailView.as_view(), name="detail")
+    path("list/<pk>", RecipesDetailView.as_view(), name="detail"),
 ]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

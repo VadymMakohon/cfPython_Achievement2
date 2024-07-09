@@ -19,8 +19,22 @@
         <a href="{% url 'recipes:recipes_home' %}" class="back-button">Back</a>
         <a href="{% url 'recipes:add_recipe' %}" class="about-button">Add Recipe</a>
         <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+
+        <!-- Search form in the top-bar -->
+        <form method="get" action="{% url 'recipes:recipes_list' %}" class="search-form">
+            {{ form.search_text.label_tag }} {{ form.search_text }}
+            {{ form.Recipe_Name.label_tag }} {{ form.Recipe_Name }}
+            {{ form.Ingredients.label_tag }} {{ form.Ingredients }}
+            {{ form.chart_type.label_tag }} {{ form.chart_type }}
+            <button type="submit" class="btn btn-primary">Search</button>
+            <button type="button" id="clear-search" class="btn btn-secondary">Clear</button>
+        </form>
     </div>
     <div class="page-title">Recipes</div>
+    <div class="chart-container">
+        <img id="recipe-chart" src="" alt="Recipe Chart">
+    </div>
+
     <div class="recipe-list">
         {% for object in object_list %}
         <div class="recipe-item">
@@ -146,7 +160,133 @@
         .logout-button:hover {
             background-color: #555;
         }
+
+        .about-button {
+            position: fixed;
+            font-family: 'Roboto';
+            font-size: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.963);
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            letter-spacing: 2px;
+            top: 10px;
+            right: 130px;
+            display: inline-block;
+            padding: 10px 20px;
+            color: rgb(188, 188, 188);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .about-button:hover {
+            background-color: #555;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.87);
+            outline: 2px solid transparent;
+            outline-color: rgba(255, 255, 255, .1);
+            padding: 23px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            width: 100%;
+        }
+
+        .top-bar a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .top-bar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Style the search form within the top-bar */
+        .search-form {
+            display: flex;
+            gap: 10px;
+            margin-left: 200px;
+        }
+
+        /* Style individual form elements (optional) */
+        .search-form label {
+            font-weight: bold;
+            color: white;
+        }
+
+        .search-form select,
+        .search-form input[type="text"] {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 5px;
+            border-radius: 3px;
+            color: white;
+        }
+
+        .search-form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            /* Set the width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.3);
+            /* Track background color */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgb(112, 112, 112);
+            /* Thumb color */
+            border-radius: 10px;
+            /* Rounded corners for the thumb */
+        }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#clear-search").click(function () {
+                // Clear the form fields
+                $("#id_search_text").val("");
+                $("#id_Recipe_Name").val("");
+                $("#id_Ingredients").val([]);
+                $("#id_chart_type").val("");  // Clear the chart_type field
+
+                // Clear the chart by setting an empty src attribute
+                $("#recipe-chart").attr("src", "");
+
+                // Submit the form to refresh the recipe list
+                $("form").submit();
+            });
+        });
+    </script>
 </body>
 
 </html>

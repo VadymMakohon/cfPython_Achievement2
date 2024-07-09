@@ -213,11 +213,11 @@
                 {{ form.description }}
             </div>
             <div class="form-group">
-                <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label><br>
+                <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label><br><br>
                 {{ form.ingredients }}
             </div>
             <div>
-                <h3 class="mb-3">New Ingredient(s):</h3><br>
+                <h3 class="mb-3">New Ingredient(s):</h3>
                 <div id="formset-container">
                     {{ formset.management_form }} {% for form in formset %}
                     <div class="form-group">{{ form.new_ingredient }}</div>

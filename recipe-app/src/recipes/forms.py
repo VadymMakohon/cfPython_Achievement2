@@ -10,12 +10,12 @@ CHART_CHOICES = (
 
 
 class RecipeSearchForm(forms.Form):
-    Recipe_Name = forms.CharField(
+    search_text = forms.CharField(
         required=False,
-        max_length=50,
-        label="Recipe Name",
+        max_length=100, # Adjust the max length as needed
+        label="Search",
         widget=forms.TextInput(
-            attrs={"class": "form-item", "placeholder": "Enter a Recipe Name"}
+            attrs={"class": "form-item", "placeholder": "Enter a Recipe Name or Ingredient"}
         ),
     )
     Ingredients = forms.ModelMultipleChoiceField(
@@ -30,15 +30,14 @@ class RecipeSearchForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
-        recipe_name = cleaned_data.get("Recipe_Name")
+        search_text = cleaned_data.get("search_text")
         ingredients = cleaned_data.get("Ingredients")
 
-        if not recipe_name and not ingredients:
+        if not search_text and not ingredients:
             raise forms.ValidationError(
-                "Please enter a recipe name or select an ingredient."
+                "Please enter a search term or select an ingredient."
             )
         return cleaned_data
-
 
 class RecipeForm(forms.ModelForm):
     class Meta:
@@ -51,7 +50,7 @@ class RecipeForm(forms.ModelForm):
             "ingredients": forms.SelectMultiple(
                 attrs={
                     "class": "form-item",
-                    "title": "Please select an item from the list. Hold CTRL to select multiple items",
+                    "name": "Please select an item from the list. Hold CTRL to select multiple items",
                 }
             ),
             "pic": forms.FileInput(attrs={"class": "form-item"}),

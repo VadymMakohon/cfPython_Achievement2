@@ -1,0 +1,114 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fuggles&family=Mooli&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto';
+            background-image: url("{% static 'recipes/images/home_background2.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.6);
+            outline: 1px solid transparent;
+            outline-color: rgba(255, 255, 255, .5);
+            outline-offset: -10px;
+            color: rgb(188, 188, 188);
+            border-radius: 8px;
+            padding: 80px;
+            padding-top: 30px;
+            padding-bottom: 70px;
+            text-align: center;
+            box-shadow: 4px 4px 4px rgba(0, 0, 0, 1);
+        }
+
+        .login-container p {
+            color: white;
+            margin-bottom: 20px;
+            margin-top: 5px;
+            font-size: 90px;
+            font-family: 'Fuggles', cursive;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-container label {
+            display: block;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .input-container input:focus {
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .login-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #555;
+        }
+
+        .signup-link {
+            color: white;
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <p>Login</p>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="input-container">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+</body>
+
+</html>

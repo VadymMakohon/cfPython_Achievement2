@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,10 +14,12 @@
         rel="stylesheet">
 </head>
 
-<body>
-    <a href="{% url 'recipes:recipes_home' %}" class="back-button">Back</a>
-    <br>
-    <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+<body class="scrollbar">
+    <div class="top-bar">
+        <a href="{% url 'recipes:recipes_home' %}" class="back-button">Back</a>
+        <a href="{% url 'recipes:add_recipe' %}" class="about-button">Add Recipe</a>
+        <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+    </div>
     <div class="page-title">Recipes</div>
     <div class="recipe-list">
         {% for object in object_list %}

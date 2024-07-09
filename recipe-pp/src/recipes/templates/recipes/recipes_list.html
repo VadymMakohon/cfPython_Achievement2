@@ -15,6 +15,8 @@
 
 <body>
     <a href="{% url 'recipes:recipes_home' %}" class="back-button">Back</a>
+    <br>
+    <a href="{% url 'logout' %}" class="logout-button">Logout</a>
     <div class="page-title">Recipes</div>
     <div class="recipe-list">
         {% for object in object_list %}
@@ -115,6 +117,30 @@
         }
 
         .back-button:hover {
+            background-color: #555;
+        }
+
+        .logout-button {
+            position: fixed;
+            font-family: 'Roboto';
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.963);
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            top: 20px;
+            right: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: rgb(188, 188, 188);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .logout-button:hover {
             background-color: #555;
         }
     </style>

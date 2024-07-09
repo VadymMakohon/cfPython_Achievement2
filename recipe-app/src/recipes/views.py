@@ -4,6 +4,7 @@ import logging
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from django.db.models import Q
 
 from typing import Any, Dict
 from django.shortcuts import render, redirect
@@ -26,7 +27,7 @@ def recipes_home(request):
     return render(request, "recipes/recipes_home.html")
 
 
-def render_chart(chart_type, data, **kwargs):
+def get_chart(chart_type, data, **kwargs):
     plt.switch_backend("AGG")
     fig = plt.figure(figsize=(12, 8), dpi=100)
     ax = fig.add_subplot(111)
@@ -84,18 +85,10 @@ class RecipesListView(LoginRequiredMixin, ListView):
             queryset = queryset.filter(title__icontains=recipe_name)
 
         if ingredients:
-            for ingredient in ingredients:
-                queryset = queryset.filter(ingredients__id=ingredient)
-
-        # Check if there are any recipes in the queryset
-        if not queryset.exists():
-            # Add a message to the user indicating no recipes found
-            messages.warning(
-                self.request,
-                "There are no recipes with that combination of ingredients.",
-            )
-            # Return an empty queryset
-            queryset = Recipe.objects.none()
+            ingredient_query = Q()
+            for ingredient_id in ingredients:
+                ingredient_query |= Q(ingredients__id=ingredient_id)
+            queryset = queryset.filter(ingredient_query)
 
         return queryset
 
@@ -120,7 +113,7 @@ class RecipesListView(LoginRequiredMixin, ListView):
                 else:
                     chart_data["labels"] = None
 
-                chart_image = render_chart(chart_type, chart_data)
+                chart_image = get_chart(chart_type, chart_data)
                 context["chart_image"] = chart_image
 
         except KeyError:
@@ -210,7 +203,7 @@ def generate_chart(request):
     else:
         chart_data["labels"] = None
 
-    chart_image = render_chart(chart_type, chart_data)
+    chart_image = get_chart(chart_type, chart_data)
     return JsonResponse({"chart_image": chart_image})
 
 @login_required

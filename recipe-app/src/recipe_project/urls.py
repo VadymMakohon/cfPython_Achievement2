@@ -13,7 +13,6 @@ urlpatterns = [
     path("logout/", logout_view, name="logout"),
     path(
         "success/",
-        # fix
         TemplateView.as_view(template_name="recipes/success.html"),
         name="success",
     ),

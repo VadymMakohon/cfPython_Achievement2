@@ -159,11 +159,11 @@
         }
 
         .recipe-image {
-            width: 70%;
+            max-width: 50%;
             height: auto;
-            max-height: 200px;
+            max-height: 150px;
             margin-bottom: 10px;
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
         }
 
         .recipe-item a {
@@ -223,6 +223,50 @@
             background-color: #555;
         }
 
+        .about-button {
+            position: fixed;
+            font-family: 'Roboto';
+            font-size: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.963);
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            letter-spacing: 2px;
+            top: 10px;
+            right: 130px;
+            display: inline-block;
+            padding: 10px 20px;
+            color: rgb(188, 188, 188);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .about-button:hover {
+            background-color: #555;
+        }
+
+        .add-button {
+            position: fixed;
+            font-family: 'Roboto';
+            font-size: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.963);
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            letter-spacing: 2px;
+            top: 10px;
+            right: 230px;
+            display: inline-block;
+            padding: 10px 20px;
+            color: rgb(188, 188, 188);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .add-button:hover {
+            background-color: #555;
+        }
+
         .top-bar {
             display: flex;
             justify-content: space-between;
@@ -231,6 +275,7 @@
             outline: 2px solid transparent;
             outline-color: rgba(255, 255, 255, .1);
             padding: 23px;
+            padding-bottom: 10px;
             position: fixed;
             top: 0;
             left: 0;
@@ -257,57 +302,124 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Style the search form within the top-bar */
-        .search-form {
-            display: flex;
-            gap: 10px;
-            margin-left: 200px;
-        }
-
-        /* Style individual form elements (optional) */
-        .search-form label {
+        .top-bar button {
+            text-decoration: none;
+            color: #fff;
+            font-size: 15px;
             font-weight: bold;
-            color: white;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .search-form select,
-        .search-form input[type="text"] {
+        .top-bar button:hover {
             background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-button {
+            position: fixed;
+            background-color: #00000000;
+            font-family: 'Roboto';
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.963);
+            box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            letter-spacing: 2px;
+            top: 10px;
+            right: 390px;
+            display: inline-block;
+            padding: 10px 20px;
+            color: rgb(188, 188, 188);
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .filter-button:hover {
+            background-color: #555;
+        }
+
+        /* Style for form container */
+        .search-form-container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.87);
+            margin-top: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style for form group (e.g., input and select elements) */
+        .form-group {
+            display: block;
+            margin: 10px 0;
+        }
+
+        /* Style for form input and select */
+        .form-control {
+            width: 100%;
+            padding: 10px;
             border: none;
-            padding: 5px;
-            border-radius: 3px;
+            border-radius: 5px;
+            background-color: rgba(88, 88, 88, 0.772);
             color: white;
         }
 
-        .search-form button {
-            background-color: #007BFF;
-            color: white;
+        /* CSS for the filter dropdown */
+        .filter-dropdown {
+            display: none;
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.87);
+            width: 100%;
+            top: 70px;
+            /* Adjust this value based on your design */
+            left: 0;
+            z-index: 999;
+            /* ... Add any other desired styling for the dropdown ... */
+        }
+
+        /* CSS to make the dropdown appear when the button is clicked */
+        .show-filter .filter-dropdown {
+            display: block;
+        }
+
+        /* Style for buttons */
+        button {
             border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
+            margin-left: 850px;
             cursor: pointer;
         }
 
-        .search-form button:hover {
-            background-color: #0056b3;
+
+        .chart-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .rounded-chart {
+            max-width: 100%;
+            max-height: 400px;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8);
         }
 
         ::-webkit-scrollbar {
             width: 10px;
-            /* Set the width of the scrollbar */
         }
 
         ::-webkit-scrollbar-track {
             background-color: rgba(0, 0, 0, 0.3);
-            /* Track background color */
         }
 
         ::-webkit-scrollbar-thumb {
             background-color: rgb(112, 112, 112);
-            /* Thumb color */
             border-radius: 10px;
-            /* Rounded corners for the thumb */
         }
+
+        /* 
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -336,7 +448,7 @@
         });
 
 
-    </script>
+    </script> */
 
 </body>
 

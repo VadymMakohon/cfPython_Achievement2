@@ -12,6 +12,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fuggles&family=Mooli&family=Roboto:wght@300&display=swap"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+Jf0Jt9OHo9z1rq9z6H+6n5p3DqP5F5KnsF5CEkVR+tg2F5F5"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             display: flex;
@@ -201,7 +205,7 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
-                <label for="{{ form.name.id_for_label }}">Name:</label><br>
+                <label for="{{ form.name.id_for_label }}">Name of Recipe:</label><br>
                 {{ form.name }}
             </div>
             <div class="form-group">
@@ -213,32 +217,61 @@
                 {{ form.description }}
             </div>
             <div class="form-group">
-                <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label><br>
+                <label for="{{ form.ingredients.id_for_label }}">Ingredients:</label><br><br>
                 {{ form.ingredients }}
             </div>
-            <div>
-                <h3 class="mb-3">New Ingredient(s):</h3><br>
+            <div id="new-ingredients-container">
+                <h3 class="mb-3">New Ingredient(s):</h3>
                 <div id="formset-container">
-                    {{ formset.management_form }} {% for form in formset %}
+                    {{ formset.management_form }}
+                    {% for form in formset %}
                     <div class="form-group">{{ form.new_ingredient }}</div>
                     {% endfor %}
                 </div>
-                <button type="button" id="add-another-btn" class="btn btn-secondary">Add Another</button><br>
-            </div>
+                <button type="button" id="add-another-btn" class="btn btn-secondary">Add Another Ingredient</button><br>
+            </div> <!-- This closing tag was missing -->
             <div class="form-group">
-                <label for="{{ form.pic.id_for_label }}">Picture:</label><br>
+                <label for="{{ form.pic.id_for_label }}"><br>Image:</label><br>
                 {{ form.pic }}
             </div>
             <div class="button-container">
                 <button type="submit" class="save-button btn btn-primary">Save Recipe</button>
                 <button type="submit" class="save-add-another-button btn btn-success" name="save_and_add">Save & Add
-                    Another</button>
+                    Another Recipe</button>
             </div>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+Jf0Jt9OHo9z1rq9z6H+6n5p3DqP5F5KnsF5CEkVR+tg2F5F5"
-        crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const formsetContainer = document.getElementById("formset-container");
+            const addAnotherBtn = document.getElementById("add-another-btn");
+            const totalFormsInput = document.querySelector(
+                'input[name="form-TOTAL_FORMS"]'
+            );
+
+            addAnotherBtn.addEventListener("click", function () {
+                const originalForm = document.querySelector(
+                    "#formset-container .form-group"
+                );
+                const clonedForm = originalForm.cloneNode(true);
+                const newIngredientInput = clonedForm.querySelector('input[type="text"]');
+                newIngredientInput.value = ""; // Reset the value to an empty string
+
+                // Update the input names and IDs based on the new form count
+                let totalForms = parseInt(totalFormsInput.value);
+                clonedForm.innerHTML = clonedForm.innerHTML.replace(
+                    /form-\d+/g,
+                    `form-${totalForms}`
+                );
+
+                formsetContainer.appendChild(clonedForm);
+
+                // Increment the TOTAL_FORMS value
+                totalFormsInput.value = totalForms + 1;
+            });
+        });
+    </script>
 </body>
 
 </html>

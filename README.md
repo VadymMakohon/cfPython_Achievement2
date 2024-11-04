@@ -68,5 +68,8 @@ Feel free to fork this repository and contribute by submitting pull requests. Fo
 ## License
 This project is licensed under the MIT License.
 
+### Show your support
+Give a ⭐ if you like these projects!
+
 # Contributors
 - [Vadym Makohon](https://github.com/VadymMakohon)
